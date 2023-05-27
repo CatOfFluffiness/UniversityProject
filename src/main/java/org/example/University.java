@@ -23,23 +23,49 @@ public class University {
                 + "yearOfFoundation = " + yearOfFoundation+ '\n'
                 + "mainProfile = " + mainProfile;
     }
-    public String getId() {return id;}
 
-    public void setId(String id) {this.id = id;}
+    public String getId() {
+        return id;
+    }
 
-    public String getFullName() {return fullName;}
+    public University setId(String id) {
+        this.id = id;
+        return this;
+    }
 
-    public void setFullName(String fullName) {this.fullName = fullName;}
+    public String getFullName() {
+        return fullName;
+    }
 
-    public String getShortName() {return shortName;}
+    public University setFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
+    }
 
-    public void setShortName(String shortName) {this.shortName = shortName;}
+    public String getShortName() {
+        return shortName;
+    }
 
-    public int getYearOfFoundation() {return yearOfFoundation;}
+    public University setShortName(String shortName) {
+        this.shortName = shortName;
+        return this;
+    }
 
-    public void setYearOfFoundation(int yearOfFoundation) {this.yearOfFoundation = yearOfFoundation;}
+    public int getYearOfFoundation() {
+        return yearOfFoundation;
+    }
 
-    public StudyProfile getMainProfile() {return mainProfile;}
+    public University setYearOfFoundation(int yearOfFoundation) {
+        this.yearOfFoundation = yearOfFoundation;
+        return this;
+    }
 
-    public void setMainProfile(StudyProfile mainProfile) {this.mainProfile = mainProfile;}
+    public StudyProfile getMainProfile() {
+        return mainProfile;
+    }
+
+    public University setMainProfile(StudyProfile mainProfile) {
+        this.mainProfile = mainProfile;
+        return this;
+    }
 }

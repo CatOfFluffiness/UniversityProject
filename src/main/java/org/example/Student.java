@@ -20,19 +20,40 @@ public class Student {
                 + "currentCourseNumber = " + currentCourseNumber + '\n'
                 + "avgExamScore = " + avgExamScore + '\n';
     }
-    public String getFullName() {return fullName;}
 
-    public void setFullName(String fullName) {this.fullName = fullName;}
+    public String getFullName() {
+        return fullName;
+    }
 
-    public String getUniversityId() {return universityId;}
+    public Student setFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
+    }
 
-    public void setUniversityId(String universityId) {this.universityId = universityId;}
+    public String getUniversityId() {
+        return universityId;
+    }
 
-    public int getCurrentCourseNumber() {return currentCourseNumber;}
+    public Student setUniversityId(String universityId) {
+        this.universityId = universityId;
+        return this;
+    }
 
-    public void setCurrentCourseNumber(int currentCourseNumber) {this.currentCourseNumber = currentCourseNumber;}
+    public int getCurrentCourseNumber() {
+        return currentCourseNumber;
+    }
 
-    public float getAvgExamScore() {return avgExamScore;}
+    public Student setCurrentCourseNumber(int currentCourseNumber) {
+        this.currentCourseNumber = currentCourseNumber;
+        return this;
+    }
 
-    public void setAvgExamScore(float avgExamScore) {this.avgExamScore = avgExamScore;}
+    public float getAvgExamScore() {
+        return avgExamScore;
+    }
+
+    public Student setAvgExamScore(float avgExamScore) {
+        this.avgExamScore = avgExamScore;
+        return this;
+    }
 }

@@ -21,7 +21,7 @@ public class University {
                 + "fullName = " + fullName + '\n'
                 + "shortName = " + shortName+ '\n'
                 + "yearOfFoundation = " + yearOfFoundation+ '\n'
-                + "mainProfile = " + mainProfile;
+                + "mainProfile = " + mainProfile.getProfileName();
     }
 
     public String getId() {

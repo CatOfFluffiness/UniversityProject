@@ -14,12 +14,11 @@ public class Student {
         this.avgExamScore = avgExamScore;
     }
     public String toString() {
-        return "Student{"
-                + "fullName='" + fullName + '\''
-                + ", universityId=" + universityId
-                + ", currentCourseNumber=" + currentCourseNumber
-                + ", avgExamScore=" + avgExamScore
-                + '}';
+        return "Student:\n"
+                + "fullName = " + fullName + '\n'
+                + "universityId = " + universityId + '\n'
+                + "currentCourseNumber = " + currentCourseNumber + '\n'
+                + "avgExamScore = " + avgExamScore + '\n';
     }
     public String getFullName() {return fullName;}
 
@@ -36,6 +35,4 @@ public class Student {
     public float getAvgExamScore() {return avgExamScore;}
 
     public void setAvgExamScore(float avgExamScore) {this.avgExamScore = avgExamScore;}
-
-
 }

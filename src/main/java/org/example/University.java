@@ -1,7 +1,5 @@
 package org.example;
 
-import org.apache.logging.log4j.message.StringFormattedMessage;
-
 public class University {
 
     String id;
@@ -19,12 +17,11 @@ public class University {
     }
 
     public String toString() {
-        return "University{"
-                + "fullName='" + fullName + '\''
-                + ", shortName=" + shortName
-                + ", yearOfFoundation=" + yearOfFoundation
-                + ", mainProfile=" + mainProfile
-                + '}';
+        return "University:\n"
+                + "fullName = " + fullName + '\n'
+                + "shortName = " + shortName+ '\n'
+                + "yearOfFoundation = " + yearOfFoundation+ '\n'
+                + "mainProfile = " + mainProfile;
     }
     public String getId() {return id;}
 
@@ -45,6 +42,4 @@ public class University {
     public StudyProfile getMainProfile() {return mainProfile;}
 
     public void setMainProfile(StudyProfile mainProfile) {this.mainProfile = mainProfile;}
-
-
 }

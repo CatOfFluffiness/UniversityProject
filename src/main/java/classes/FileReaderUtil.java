@@ -14,7 +14,7 @@ import java.util.List;
 
 public class FileReaderUtil {
 
-    //Ну раз уж я прошел частично блок про паттерны, использую здесь Singleton
+    //Ну раз уж я прошел частично блок про паттерны, использую здесь Singleton, чтобы гарантировать единственный экземпляр класса FileReaderUtil в приложении.
     private FileReaderUtil() {}
 
     private static FileReaderUtil instance = null;

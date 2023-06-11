@@ -1,12 +1,14 @@
-package org.example;
+package classes;
+
+import enumClasses.StudyProfile;
 
 public class University {
 
-    String id;
-    String fullName;
-    String shortName;
-    int yearOfFoundation;
-    StudyProfile mainProfile;
+    private String id;
+    private String fullName;
+    private String shortName;
+    private int yearOfFoundation;
+    private StudyProfile mainProfile;
 
     public University(String id, String fullName, String shortName, int yearOfFoundation, StudyProfile mainProfile) {
         this.id = id;
@@ -15,13 +17,12 @@ public class University {
         this.yearOfFoundation = yearOfFoundation;
         this.mainProfile = mainProfile;
     }
-
     public String toString() {
         return "University:\n"
                 + "fullName = " + fullName + '\n'
                 + "shortName = " + shortName+ '\n'
                 + "yearOfFoundation = " + yearOfFoundation+ '\n'
-                + "mainProfile = " + mainProfile.getProfileName();
+                + "mainProfile = " + mainProfile.getProfileName() + '\n';
     }
 
     public String getId() {

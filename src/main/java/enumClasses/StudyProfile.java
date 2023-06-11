@@ -1,8 +1,10 @@
-package org.example;
+package enumClasses;
 
 public enum StudyProfile {
     MEDICINE ("Медицина"),
-    PHYSICS("Физика");
+    PHYSICS("Физика"),
+    LINGUISTICS("Лингвистика"),
+    MATHEMATICS("Математика");
 
     private final String profileName;
 

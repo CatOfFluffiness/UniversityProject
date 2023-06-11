@@ -1,11 +1,11 @@
-package org.example;
+package classes;
 
 public class Student {
 
-    String fullName;
-    String universityId;
-    int currentCourseNumber;
-    float avgExamScore;
+    private String fullName;
+    private String universityId;
+    private int currentCourseNumber;
+    private float avgExamScore;
 
     public Student(String fullName, String universityId, int currentCourseNumber, float avgExamScore) {
         this.fullName = fullName;
@@ -13,6 +13,9 @@ public class Student {
         this.currentCourseNumber = currentCourseNumber;
         this.avgExamScore = avgExamScore;
     }
+
+    public Student() {}
+
     public String toString() {
         return "Student:\n"
                 + "fullName = " + fullName + '\n'

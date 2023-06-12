@@ -9,4 +9,3 @@ public class UniShortNameComparator implements UniversityComparator{
         return StringUtils.compare(university1.getShortName(), university2.getShortName());
     }
 }
-

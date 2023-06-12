@@ -3,7 +3,7 @@ import classes.Student;
 import classes.University;
 import comparators.StudentComparator;
 import comparators.UniversityComparator;
-import enumClasses.ComparatorFactory;
+import classes.ComparatorFactory;
 import enumClasses.StudentEnum;
 import enumClasses.UniversityEnum;
 

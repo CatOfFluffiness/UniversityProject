@@ -1,6 +1,8 @@
-package enumClasses;
+package classes;
 
 import comparators.*;
+import enumClasses.StudentEnum;
+import enumClasses.UniversityEnum;
 
 public class ComparatorFactory {
     public static StudentComparator getStudentComparator(StudentEnum studentEnum) {

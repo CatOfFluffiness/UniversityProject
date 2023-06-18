@@ -39,5 +39,12 @@ public class Main {
         System.out.println(universityJson);
         // Де сериализация полученной JSON-строки университетов обратно в список студентов
         List<University> deserializedUniversityList = JsonUtil.deserializeUniversityList(universityJson);
+
+        //Сравнение количества элементов в исходной и в десериализованной коллекциях
+        System.out.println(studentsList.size() == deserializedStudentsList.size() ? "Размеры исходного и десериализованного листов студентов одинаковые!"
+                : "Размеры исходного и десериализованного листов отличаются!");
+
+        System.out.println(universitiesList.size() == deserializedUniversityList.size() ? "Размеры исходного и десериализованного листов университетов одинаковые!"
+                : "Размеры исходного и десериализованного листов университетов отличаются!");
     }
 }

@@ -16,7 +16,6 @@ public class FileReaderUtil {
 
     //Использую здесь Singleton, чтобы гарантировать единственный экземпляр класса FileReaderUtil в приложении.
     private FileReaderUtil() {}
-
     private static FileReaderUtil instance = null;
     public static FileReaderUtil getInstance() {
         if (instance == null) {

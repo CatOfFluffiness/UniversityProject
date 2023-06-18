@@ -1,9 +1,6 @@
-import classes.FileReaderUtil;
-import classes.Student;
-import classes.University;
+import classes.*;
 import comparators.StudentComparator;
 import comparators.UniversityComparator;
-import classes.ComparatorFactory;
 import enumClasses.StudentEnum;
 import enumClasses.UniversityEnum;
 
@@ -22,10 +19,25 @@ public class Main {
 
         studentsList.stream().sorted(studentComparator).forEach(System.out::println);
 
+        // Сериализация списка студентов
+        String studentJson = JsonUtil.serializeStudentList(studentsList);
+        // Вывод JSON-строк в консоль
+        System.out.println(studentJson);
+        // Де сериализация полученной JSON-строки студентов обратно в список студентов
+        List<Student> deserializedStudentsList = JsonUtil.deserializeStudentList(studentJson);
+
+
         //Вывод информации об университетах в алфавитном порядке по сокращенному названию
         UniversityComparator universityComparator = ComparatorFactory.getUniversityComparator(UniversityEnum.SHORT_NAME);
         List<University> universitiesList = fileReader.readUniversitiesFromFile("universityInfo.xlsx");
 
         universitiesList.stream().sorted(universityComparator).forEach(System.out::println);
+
+        // Сериализация списка университетов
+        String universityJson = JsonUtil.serializeUniversityList(universitiesList);
+        // Вывод JSON-строк в консоль
+        System.out.println(universityJson);
+        // Де сериализация полученной JSON-строки университетов обратно в список студентов
+        List<University> deserializedUniversityList = JsonUtil.deserializeUniversityList(universityJson);
     }
 }

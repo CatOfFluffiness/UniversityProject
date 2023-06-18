@@ -40,11 +40,14 @@ public class Main {
         // Де сериализация полученной JSON-строки университетов обратно в список студентов
         List<University> deserializedUniversityList = JsonUtil.deserializeUniversityList(universityJson);
 
-        //Сравнение количества элементов в исходной и в десериализованной коллекциях
-        System.out.println(studentsList.size() == deserializedStudentsList.size() ? "Размеры исходного и десериализованного листов студентов одинаковые!"
-                : "Размеры исходного и десериализованного листов отличаются!");
+        //Сравнение количества элементов в исходной и в десериализованной коллекциях студентов
+        System.out.println((studentsList.size() == deserializedStudentsList.size()) ? ("Размеры исходного и десериализованного листов студентов одинаковые!" +
+                " Исходного: " + studentsList.size() + " Десериализованного " +deserializedStudentsList.size())
+                : ("Размеры исходного и десериализованного листов отличаются!" + " Исходного: " + studentsList.size() + " Десериализованного " +deserializedStudentsList.size()));
 
-        System.out.println(universitiesList.size() == deserializedUniversityList.size() ? "Размеры исходного и десериализованного листов университетов одинаковые!"
-                : "Размеры исходного и десериализованного листов университетов отличаются!");
+        //Сравнение количества элементов в исходной и в десериализованной коллекциях университетов
+        System.out.println((universitiesList.size() == deserializedUniversityList.size()) ? ("Размеры исходного и десериализованного листов университетов одинаковые!" +
+                " Исходного: " + universitiesList.size() + " Десериализованного " +deserializedUniversityList.size())
+                : ("Размеры исходного и десериализованного листов университетов отличаются!" + universitiesList.size() + " Десериализованного " +deserializedUniversityList.size()));
     }
 }

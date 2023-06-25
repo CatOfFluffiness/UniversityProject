@@ -1,5 +1,7 @@
-package classes;
+package Utils;
 
+import classes.Student;
+import classes.University;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

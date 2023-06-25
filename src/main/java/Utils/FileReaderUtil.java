@@ -1,5 +1,7 @@
-package classes;
+package Utils;
 
+import classes.Student;
+import classes.University;
 import enumClasses.StudyProfile;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;

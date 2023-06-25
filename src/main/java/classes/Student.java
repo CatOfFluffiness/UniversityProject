@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.Objects;
+
 public class Student {
 
     private String fullName;
@@ -23,7 +25,22 @@ public class Student {
                 + "currentCourseNumber = " + currentCourseNumber + '\n'
                 + "avgExamScore = " + avgExamScore + '\n';
     }
+    //Переопределение equals() и hashCode() для сравнения объектов студентов
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student student)) return false;
+        return Objects.equals(getFullName(), student.getFullName()) &&
+                Objects.equals(getUniversityId(), student.getUniversityId()) &&
+                Objects.equals(getCurrentCourseNumber(), student.getCurrentCourseNumber()) &&
+                Objects.equals(getAvgExamScore(), student.getAvgExamScore());
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(getFullName(), getUniversityId(), getCurrentCourseNumber(), getAvgExamScore());
+    }
 
+    //Дальше геттеры и сеттеры студентов
     public String getFullName() {
         return fullName;
     }

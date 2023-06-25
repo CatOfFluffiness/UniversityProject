@@ -2,6 +2,8 @@ package classes;
 
 import enumClasses.StudyProfile;
 
+import java.util.Objects;
+
 public class University {
 
     private String id;
@@ -14,6 +16,7 @@ public class University {
         this.id = id;
         this.fullName = fullName;
         this.shortName = shortName;
+
         this.yearOfFoundation = yearOfFoundation;
         this.mainProfile = mainProfile;
     }
@@ -24,7 +27,23 @@ public class University {
                 + "yearOfFoundation = " + yearOfFoundation+ '\n'
                 + "mainProfile = " + mainProfile.getProfileName() + '\n';
     }
+    //Переопределение equals() и hashCode() для сравнения объектов университетов
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof University university)) return false;
+        return getYearOfFoundation() == university.getYearOfFoundation() &&
+                Objects.equals(getId(), university.getId()) &&
+                Objects.equals(getFullName(), university.getFullName()) &&
+                Objects.equals(getShortName(), university.getShortName()) &&
+                Objects.equals(getMainProfile(),university.getMainProfile());
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getFullName(), getShortName(), getYearOfFoundation(), getMainProfile());
+    }
 
+    //Дальше геттеры и сеттеры университетов
     public String getId() {
         return id;
     }

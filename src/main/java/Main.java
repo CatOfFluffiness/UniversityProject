@@ -1,7 +1,4 @@
-import Utils.FileReaderUtil;
-import Utils.JsonUtil;
-import Utils.ListSizeChecker;
-import Utils.ObjectIdentityChecker;
+import Utils.*;
 import classes.*;
 import comparators.StudentComparator;
 import comparators.UniversityComparator;
@@ -48,5 +45,9 @@ public class Main {
         //Сравнение количества элементов в исходной и в десериализованной коллекциях
         ListSizeChecker.isListsSizeEqual(studentsList, deserializedStudentsList, "студентов");
         ListSizeChecker.isListsSizeEqual(universitiesList, deserializedUniversityList, "университетов");
+
+        //Вызов методов создания статистики и записи её в файл
+        List<Statistics> statisticsList = CollectionStatisticsUtil.createStatistics(studentsList, universitiesList);
+        XlsWriter.generateTableAndWriteToFile(statisticsList, "statistics.xlsx");
     }
 }

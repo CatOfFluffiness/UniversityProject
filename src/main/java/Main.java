@@ -43,11 +43,7 @@ public class Main {
         List<University> deserializedUniversityList = JsonUtil.deserializeUniversityList(universityJson);
 
         // Проверка сериализации и десериализации отдельных объектов студентов и университетов, вывод результатов сравнения отдельных объектов
-        // Вызов утилит для проверки идентичности всех объектов
-        ObjectIdentityChecker.checkAllStudentsIdentity(studentsList);
-        ObjectIdentityChecker.checkAllUniversitiesIdentity(universitiesList);
-
-        //Вывод общих результатов проверки по всем университетам и студентам, что бы не изучать отдельные элементы в консоли
+        ObjectIdentityChecker.checkAllObjectsIdentity(studentsList, universitiesList);
 
         //Сравнение количества элементов в исходной и в десериализованной коллекциях
         ListSizeChecker.isListsSizeEqual(studentsList, deserializedStudentsList, "студентов");

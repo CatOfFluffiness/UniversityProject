@@ -52,21 +52,15 @@ public class ObjectIdentityChecker {
         return allObjectsIdentical.get();
     }
 
-    public static void checkAllStudentsIdentity(List<Student> studentsList) {
-        boolean allStudentsIdentical = checkAllObjectsIdentical(studentsList, "студенты");
-        if (allStudentsIdentical) {
-            System.out.println("Все объекты студентов идентичны.");
-        } else {
-            System.out.println("Найдены неидентичные объекты студентов.");
-        }
-    }
+    public static void checkAllObjectsIdentity(List<Student> studentsList, List<University> universitiesList) {
 
-    public static void checkAllUniversitiesIdentity(List<University> universitiesList) {
+        boolean allStudentsIdentical = checkAllObjectsIdentical(studentsList, "студенты");
         boolean allUniversitiesIdentical = checkAllObjectsIdentical(universitiesList, "университеты");
-        if (allUniversitiesIdentical) {
-            System.out.println("Все объекты университетов идентичны.");
+
+        if (allStudentsIdentical && allUniversitiesIdentical) {
+            System.out.println("Все объекты студентов и университетов идентичны.");
         } else {
-            System.out.println("Найдены неидентичные объекты университетов.");
+            System.out.println("Найдены неидентичные объекты.");
         }
     }
 

@@ -9,15 +9,25 @@ import filehandling.XlsWriter;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.*;
+
+import static java.util.logging.Level.INFO;
+
 
 public class Main {
+    private static final  Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args)throws IOException {
+
+        //Начало работы логгера в классе мейн
+        LogManager.getLogManager().readConfiguration(
+               Main.class.getResourceAsStream("/logging.properties"));
+        logger.log(INFO, "Старт работы программы");
 
         FileReaderUtil fileReader = FileReaderUtil.getInstance();
         //Вывод информации о студентах в порядке возрастания оценок
         StudentComparator studentComparator = ComparatorFactory.getStudentComparator(StudentEnum.AVG_EXAM_SCORE);
-        List<Student> studentsList = fileReader.readStudentsFromFile("universityInfo.xlsx");
+        List<Student> studentsList = fileReader.readStudentsFromFile("src/main/resources/universityInfo.xlsx");
 
         studentsList.stream().sorted(studentComparator).forEach(System.out::println);
 
@@ -30,7 +40,7 @@ public class Main {
 
         //Вывод информации об университетах в алфавитном порядке по сокращенному названию
         UniversityComparator universityComparator = ComparatorFactory.getUniversityComparator(UniversityEnum.SHORT_NAME);
-        List<University> universitiesList = fileReader.readUniversitiesFromFile("universityInfo.xlsx");
+        List<University> universitiesList = fileReader.readUniversitiesFromFile("src/main/resources/universityInfo.xlsx");
 
         universitiesList.stream().sorted(universityComparator).forEach(System.out::println);
 
@@ -51,5 +61,7 @@ public class Main {
         //Вызов методов создания статистики и записи её в файл
         List<Statistics> statisticsList = CollectionStatisticsUtil.createStatistics(studentsList, universitiesList);
         XlsWriter.generateTableAndWriteToFile(statisticsList, "statistics.xlsx");
+
+        logger.log(INFO, "Приложение завершило работу.");
     }
 }

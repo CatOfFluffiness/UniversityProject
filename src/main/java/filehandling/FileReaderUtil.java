@@ -12,9 +12,13 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class FileReaderUtil {
+
+    private static final Logger logger = Logger.getLogger(FileReaderUtil.class.getName());
 
     //Использую здесь Singleton, чтобы гарантировать единственный экземпляр класса FileReaderUtil в приложении.
     private FileReaderUtil() {}
@@ -28,44 +32,53 @@ public class FileReaderUtil {
 
     public List<Student> readStudentsFromFile(String fileName) throws IOException {
 
+        logger.info("Начало чтения из файла, считывание файла информации о студентах: " + fileName);
+
         List<Student> studentsList = new ArrayList<>();
 
-        FileInputStream fis = new FileInputStream(fileName);
-        XSSFWorkbook workbook = new XSSFWorkbook(fis);
-        Sheet sheet = workbook.getSheet("Студенты");
+        try (FileInputStream fis = new FileInputStream(fileName);
+             XSSFWorkbook workbook = new XSSFWorkbook(fis)) {
 
-        Iterator<Row> rowIterator = sheet.iterator();
+            Sheet sheet = workbook.getSheet("Студенты");
 
-        // пропускаем заголовок
-        if (rowIterator.hasNext()) {
-            rowIterator.next();
+            Iterator<Row> rowIterator = sheet.iterator();
+
+            // пропускаем заголовок
+            if (rowIterator.hasNext()) {
+                rowIterator.next();
+            }
+
+            while (rowIterator.hasNext()) {
+                Row row = rowIterator.next();
+
+                String universityId = row.getCell(0).getStringCellValue();
+                String fullName = row.getCell(1).getStringCellValue();
+                int currentCourseNumber = (int) row.getCell(2).getNumericCellValue();
+                float avgExamScore = (float) row.getCell(3).getNumericCellValue();
+
+                Student student = new Student(fullName, universityId, currentCourseNumber, avgExamScore);
+
+                studentsList.add(student);
+            }
+
+            logger.info("Считывание информации о студентах закончено. Количество записей: " + studentsList.size());
+
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Ошибка при чтении файла: {0}\n{1}", new Object[]{fileName, ex});
+            throw ex;
         }
-
-        while (rowIterator.hasNext()) {
-            Row row = rowIterator.next();
-
-            String universityId = row.getCell(0).getStringCellValue();
-            String fullName = row.getCell(1).getStringCellValue();
-            int currentCourseNumber = (int) row.getCell(2).getNumericCellValue();
-            float avgExamScore = (float) row.getCell(3).getNumericCellValue();
-
-            Student student = new Student(fullName, universityId, currentCourseNumber, avgExamScore);
-
-            studentsList.add(student);
-        }
-
-        workbook.close();
-        fis.close();
 
         return studentsList;
     }
 
     public List<University> readUniversitiesFromFile(String fileName) throws IOException {
 
+        logger.info("Считывание информации об университетах: " + fileName);
+
         List<University> universitiesList = new ArrayList<>();
 
-        FileInputStream fis = new FileInputStream(fileName);
-        XSSFWorkbook workbook = new XSSFWorkbook(fis);
+        try (FileInputStream fis = new FileInputStream(fileName);
+             XSSFWorkbook workbook = new XSSFWorkbook(fis)) {
         Sheet sheet = workbook.getSheet("Университеты");
 
         Iterator<Row> rowIterator = sheet.iterator();
@@ -87,10 +100,14 @@ public class FileReaderUtil {
 
             University university = new University(id, fullName, shortName, yearOfFoundation, mainProfile);
             universitiesList.add(university);
+
+            logger.fine("Считывание информации об университетах: " + university);
         }
 
-        workbook.close();
-        fis.close();
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Ошибка при чтении файла: {0}\n{1}", new Object[]{fileName, ex});
+            throw ex;
+        }
 
         return universitiesList;
     }

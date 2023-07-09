@@ -6,8 +6,10 @@ import enumClasses.StudentEnum;
 import enumClasses.UniversityEnum;
 import filehandling.FileReaderUtil;
 import filehandling.XlsWriter;
+import filehandling.XmlWriter;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.*;
 
@@ -32,9 +34,9 @@ public class Main {
         studentsList.sort(studentComparator);
 
         // Сериализация списка студентов
-        String studentJson = JsonUtil.serializeStudentList(studentsList);
-        // Де сериализация полученной JSON-строки студентов обратно в список студентов
-        List<Student> deserializedStudentsList = JsonUtil.deserializeStudentList(studentJson);
+        String studentJson = JsonUtil.toJson(studentsList);
+        // Десериализация полученной JSON-строки студентов обратно в список студентов
+        List<Student> deserializedStudentsList = JsonUtil.fromJsonToList(studentJson, Student.class);
 
         //Сортировка университетов
         UniversityComparator universityComparator = ComparatorFactory.getUniversityComparator(UniversityEnum.SHORT_NAME);
@@ -42,9 +44,9 @@ public class Main {
         universitiesList.sort(universityComparator);
 
         // Сериализация списка университетов
-        String universityJson = JsonUtil.serializeUniversityList(universitiesList);
-        // Десериализация полученной JSON-строки университетов обратно в список студентов
-        List<University> deserializedUniversityList = JsonUtil.deserializeUniversityList(universityJson);
+        String universityJson = JsonUtil.toJson(universitiesList);
+        // Десериализация полученной JSON-строки университетов обратно в список университетов
+        List<University> deserializedUniversityList = JsonUtil.fromJsonToList(universityJson, University.class);
 
         // Проверка сериализации и десериализации отдельных объектов студентов и университетов, вывод результатов сравнения отдельных объектов
         ObjectIdentityChecker.checkAllObjectsIdentity(studentsList, universitiesList);
@@ -56,6 +58,15 @@ public class Main {
         //Вызов методов создания статистики и записи её в файл
         List<Statistics> statisticsList = CollectionStatisticsUtil.createStatistics(studentsList, universitiesList);
         XlsWriter.generateTableAndWriteToFile(statisticsList, "statistics.xlsx");
+
+        FullInfo fullInfo = new FullInfo()
+                .setStudentList(studentsList)
+                .setUniversityList(universitiesList)
+                .setStatisticsList(statisticsList)
+                .setProcessDate(new Date());
+
+        XmlWriter.generateXmlReq(fullInfo);
+        JsonUtil.toJson(fullInfo);
 
         logger.log(INFO, "Приложение завершило работу.");
     }

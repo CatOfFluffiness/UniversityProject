@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Logger;
 
+import static Utils.JsonUtil.*;
+
 public class ObjectIdentityChecker {
     private static final Logger logger = Logger.getLogger(ObjectIdentityChecker.class.getName());
 
@@ -13,20 +15,9 @@ public class ObjectIdentityChecker {
         AtomicBoolean allObjectsIdentical = new AtomicBoolean(true);
 
         objectsList.forEach(object -> {
-            String objectJson = null;
-            // Проверяем тип объекта и используем соответствующие методы сериализации и десериализации
-            if (object instanceof Student) {
-                objectJson = JsonUtil.serializeStudent((Student) object);
-            } else if (object instanceof University) {
-                objectJson = JsonUtil.serializeUniversity((University) object);
-            }
+            String objectJson = toJson(object);
             // Проверка json из отдельного элемента
-            Object objectFromJson = null;
-            if (object instanceof Student) {
-                objectFromJson = JsonUtil.deserializeStudent(objectJson);
-            } else if (object instanceof University) {
-                objectFromJson = JsonUtil.deserializeUniversity(objectJson);
-            }
+            Object objectFromJson = fromJson(objectJson, object.getClass());
             // Проверка воссоздания
             boolean objectIsIdentical = object.equals(objectFromJson);
             if (!objectIsIdentical) {

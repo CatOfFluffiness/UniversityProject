@@ -5,6 +5,7 @@ import comparators.UniversityComparator;
 import enumClasses.StudentEnum;
 import enumClasses.UniversityEnum;
 import filehandling.FileReaderUtil;
+import filehandling.JsonWriter;
 import filehandling.XlsWriter;
 import filehandling.XmlWriter;
 
@@ -66,7 +67,7 @@ public class Main {
                 .setProcessDate(new Date());
 
         XmlWriter.generateXmlReq(fullInfo);
-        JsonUtil.toJson(fullInfo);
+        JsonWriter.generateJsonFile(fullInfo);
 
         logger.log(INFO, "Приложение завершило работу.");
     }

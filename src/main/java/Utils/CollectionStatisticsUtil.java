@@ -9,9 +9,11 @@ import org.apache.commons.lang3.StringUtils;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 public class CollectionStatisticsUtil {
+    private static final Logger logger = Logger.getLogger(CollectionStatisticsUtil.class.getName());
 
     public static List<Statistics> createStatistics(List<Student> students,
                                                     List<University> universities) {
@@ -53,6 +55,9 @@ public class CollectionStatisticsUtil {
                     .setAvgExamScore(avgScore);
 
             statisticsList.add(statistics);
+
+            logger.info(String.format("Создана статистика [%s]: Количество студентов: %d, Количество университетов: %d, Средняя оценка: %.2f",
+                    profile, profileStudents.size(), profileUniversityIds.size(), avgScore));
         });
 
         return statisticsList;

@@ -57,11 +57,13 @@ public class FileReaderUtil {
                 float avgExamScore = (float) row.getCell(3).getNumericCellValue();
 
                 Student student = new Student(fullName, universityId, currentCourseNumber, avgExamScore);
-
                 studentsList.add(student);
-            }
 
-            logger.info("Считывание информации о студентах закончено. Количество записей: " + studentsList.size());
+
+            }
+            logger.info("Считывание информации о студентах закончено");
+
+
 
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Ошибка при чтении файла: {0}\n{1}", new Object[]{fileName, ex});
@@ -100,9 +102,8 @@ public class FileReaderUtil {
 
             University university = new University(id, fullName, shortName, yearOfFoundation, mainProfile);
             universitiesList.add(university);
-
-            logger.fine("Считывание информации об университетах: " + university);
         }
+            logger.info("Считывание информации об университетах закончено");
 
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Ошибка при чтении файла: {0}\n{1}", new Object[]{fileName, ex});

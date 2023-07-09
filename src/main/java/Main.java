@@ -25,30 +25,25 @@ public class Main {
         logger.log(INFO, "Старт работы программы");
 
         FileReaderUtil fileReader = FileReaderUtil.getInstance();
-        //Вывод информации о студентах в порядке возрастания оценок
+
+        //Сортировка студентов
         StudentComparator studentComparator = ComparatorFactory.getStudentComparator(StudentEnum.AVG_EXAM_SCORE);
         List<Student> studentsList = fileReader.readStudentsFromFile("src/main/resources/universityInfo.xlsx");
-
-        studentsList.stream().sorted(studentComparator).forEach(System.out::println);
+        studentsList.sort(studentComparator);
 
         // Сериализация списка студентов
         String studentJson = JsonUtil.serializeStudentList(studentsList);
-        // Вывод JSON-строк в консоль
-        System.out.println("JSON-строки студентов: " + studentJson + "\n");
         // Де сериализация полученной JSON-строки студентов обратно в список студентов
         List<Student> deserializedStudentsList = JsonUtil.deserializeStudentList(studentJson);
 
-        //Вывод информации об университетах в алфавитном порядке по сокращенному названию
+        //Сортировка университетов
         UniversityComparator universityComparator = ComparatorFactory.getUniversityComparator(UniversityEnum.SHORT_NAME);
         List<University> universitiesList = fileReader.readUniversitiesFromFile("src/main/resources/universityInfo.xlsx");
-
-        universitiesList.stream().sorted(universityComparator).forEach(System.out::println);
+        universitiesList.sort(universityComparator);
 
         // Сериализация списка университетов
         String universityJson = JsonUtil.serializeUniversityList(universitiesList);
-        // Вывод JSON-строк в консоль
-        System.out.println("JSON-строки университетов: " + universityJson + "\n");
-        // Де сериализация полученной JSON-строки университетов обратно в список студентов
+        // Десериализация полученной JSON-строки университетов обратно в список студентов
         List<University> deserializedUniversityList = JsonUtil.deserializeUniversityList(universityJson);
 
         // Проверка сериализации и десериализации отдельных объектов студентов и университетов, вывод результатов сравнения отдельных объектов

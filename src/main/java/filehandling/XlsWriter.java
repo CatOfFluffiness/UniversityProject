@@ -7,17 +7,22 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class XlsWriter {
 
+    private static final Logger logger = Logger.getLogger(XlsWriter.class.getName());
+
     public static void generateTableAndWriteToFile(List<Statistics> statisticsList, String filePath) {
+        logger.info("Начало записи информации в файл");
+
         try (Workbook workbook = new XSSFWorkbook();
              FileOutputStream outputStream = new FileOutputStream(filePath)) {
 
             Sheet sheet = workbook.createSheet("Statistics");
+            logger.info("Создана таблица '" + sheet.getSheetName() + "'");
 
             // Создание строки с названиями столбцов
-
             Row headerRow = sheet.createRow(0);
             CellStyle headerStyle = workbook.createCellStyle();
             Font headerFont = workbook.createFont();
@@ -63,8 +68,10 @@ public class XlsWriter {
 
             // Запись в файл
             workbook.write(outputStream);
+            logger.info("Запись в файл успешно завершена");
 
         } catch (IOException e) {
+            logger.warning("Ошибка при записи в файл: " + e.getMessage());
             e.printStackTrace();
         }
     }
